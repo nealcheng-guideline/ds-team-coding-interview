@@ -1,6 +1,10 @@
 """
-You have joined a new team.  During a migration you have found poorly written legacy code.
-Given its widespread use, your goal is to design this function for robustness against all types of inputs.
+You have joined a new team.  During a migration you have found a piece of legacy code.
+Given its widespread use, here are your goals:
+1. Design this function for robustness against many different types of inputs
+2. Consolidate the return types to prevent the possibility of downstream bugs.
+
+Please take a few minutes to look over this code to point out any issues.  Then
 Please assume you are working with production code, so please treat this exercise as if you're an employee. 
 
 """
@@ -35,4 +39,10 @@ You are then told to add a functionality to return cents. Is this a good idea?  
 
 
 if __name__ == "__main__":
-    pass
+    for _input in (None, "0", 0, 0.0):
+        answer = to_decimal(_input)
+        assert answer == Decimal(0)
+        assert isinstance(answer, Decimal)
+
+    # extra credit: handling string floats "41.96"
+        # assert to_decimal("0.0") == Decimal(0)

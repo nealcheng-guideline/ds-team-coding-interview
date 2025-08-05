@@ -16,6 +16,7 @@ Proper Variable naming
 ## Potential questions:
 What do I do about these exceptions?  | Up to the candidate.  Either execute "look before you leap", or "easier to ask for forgiveness"
 I'm not familiar with the Decimal class.  How can I handle the exceptions? |. You can perform an intermediate coercion into the right data structure which you are confident about putting into Decimal
+Will there be any "salary_dollars" field with dollars signs within the string? |  No
 
 ## Issues:
 
@@ -49,16 +50,26 @@ from decimal import Decimal
 
 logger = logging.getLogger(__name__)
 
-def to_decimal_solution(dollars: Optional[int | float | str]) -> Decimal:
+def to_decimal(dollars: Optional[int | float | str]) -> Decimal:
 
     if not dollars: # account for zero ints/floats, empty strings.  
-        logger.warning(f"in_dollars is of type {type(dollars)} and equal to {dollars}.  Returning a Decimal(0.0)")
+        logger.warning(f"in_dollars is of type {type(dollars)} and is equal to {dollars}.  Returning a Decimal(0.0)")
         return Decimal(0)
     
     # this is an extra credit, given that the argument can be string
+    # caveat here is that isnumeric does not recognize stringified floats (4000.0) as numeric.  
     if isinstance(dollars, str):
         if not dollars.isnumeric():
+            # extra credit for "0.0" because isnumeric does not evaluate to True
+            if '.' in dollars:
+                try:
+                    dollars = float(dollars)
+                    return Decimal(dollars)
+                except:
+                    pass
+            ###########################
             raise ValueError(f"dollars is of type string and not numeric")
+        
         else:
             dollars = float(dollars)
     #################################################################################################
@@ -80,6 +91,9 @@ will now return as an int.
 
 if __name__ == "__main__":
     for _input in (None, "0", 0, 0.0):
-        answer = to_decimal_solution(_input)
+        answer = to_decimal(_input)
         assert answer == Decimal(0)
         assert isinstance(answer, Decimal)
+
+    # extra credit: handling string floats "41.96"
+        assert to_decimal("0.0") == Decimal(0)
