@@ -1,57 +1,39 @@
 """
-For this exercise, you will use the function you had written from part 1 to ensure that the "salary_dollars"
-field will not break the LLM pipeline.  
+Now you want to call LLM (Gemini) to get a recommendation for a 401k plan given the participants.
+To do so, you need to initalize the Participant object (created with Pydantic) and then call the GeminiClient.
+Modify and fill in the code below to do so. 
 
-1. Load data from file
-2. Fill in a Participant Pydantic BaseModel
-3. Use to_decimal to perform type coercion validation for the inputs
-4. Serialize Pydantic models for providing context to prompt 
-5. Initialize the GeminiClient and make a call.  
+1. Load the participant data
+2. Initialize the Participant object making sure that the correct type of "salary_dollars" is used (Hint: use to_decimal from question1.py)
+3. Serialize Pydantic models for providing context to prompt 
+4. Initialize the GeminiClient and make a call.  
 """
+import os
+
+from dotenv import load_dotenv
 
 from question1 import to_decimal
-from copy import deepcopy
-from validation import validate_model_input, validate_prompt_input
-from dotenv import load_dotenv
-from errors import ValidationError, PromptError
 from models import Participant
+from gemini_client import GeminiClient
+from validation import validate_prompt_input
+from errors import PromptError
+
 load_dotenv()
 
-
-
-class GeminiClient():
-    
-    def __init__(self, api_key: str, model: str, temperature: float):
-        try:
-            validate_model_input(api_key, model, temperature)
-        except ValueError as e:
-            raise ValidationError("Model input validation had failed") from e
-
-    def make_query(self, prompt: str):
-        if not prompt:
-            raise Exception("Error: Prompt is not given")
-
-        return """
-        Sure I can definitely give it a shot!  Please provide me with additional information about
-        1. Whether there is employer match, and if so, to what extent.  
-        2. The breakdown of Highly Compensated Employees (HCE) vs Non-Highly Compensated Employees (NHCE)
-        """ 
 
 def construct_prompt(participants: list[Participant]) -> str:
     try:
         validate_prompt_input(participants)
     except TypeError as e:
         raise PromptError("Prompt contruction had failed") from e
- 
+    
+    # Remove full_name to ensure we do not provide PII to the LLM
+    for participant in participants:
+        participant.remove_full_name()
 
-    # removing full_name to ensure we do not provide PII to the LLM
-    participant_copy = deepcopy(participants)
-
-    for participant in participant_copy:
-        participant.full_name = ""
-        
+    # TODO: fix this!
     template = """You are a financial accountant with 20 years of experience working within large firms
-    such as Deloitte and PwC.  Can you please construct a recommendation for suitable 401k options for the employees within
+    such as Deloitte and PwC.  Can you please construct a recommendation for suitable 401k options for the participants within
     this legal entity?
     (Please note that participants will be denoted by user_id, which is their unique identifier):
 
@@ -64,14 +46,28 @@ def construct_prompt(participants: list[Participant]) -> str:
     return template
 
 
-def main():
+def main():    
     pass
-    # Load Data
+    # 1. Load Data from "participant_data.json"
 
+    # 2. Fix this to initialize a list of Participant objects
+    # participants = [Participant(**participant) for participant in data["participants"]] 
 
-    # Initialize GeminiClient and make query
+    # 3. Construct the prompt
+    # prompt = construct_prompt(participants)
 
-
+    # 4. Initialize GeminiClient and uncomment to call the client
+    # client = GeminiClient()
+    # response = client.make_query(prompt)
+    # print("Gemini Response:\n")
+    # print(response)
 
 if __name__ == "__main__":
     main()
+
+
+"""
+Extra credit:
+1. We want to design a function to filter participants by their user_ids.  Can you write such a function?
+2. If we are to perform frequent filtering by user_id, what changes would you recommend to this workflow?
+"""
