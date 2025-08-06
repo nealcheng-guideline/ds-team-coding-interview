@@ -65,4 +65,4 @@ if __name__ == "__main__":
         assert isinstance(answer, Decimal)
 
     # extra credit: handling string floats "41.96"
-        # assert to_decimal("0.0") == Decimal(0)
+        assert to_decimal("0.0") == Decimal(0)
