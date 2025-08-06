@@ -1,12 +1,6 @@
 """
-You have joined a new team.  During a migration you have found a piece of legacy code.
-Given its widespread use, here are your goals:
-1. Design this function for robustness against many different types of inputs
-2. Consolidate the return types to prevent the possibility of downstream bugs.
-
-Please take a few minutes to look over this code to point out any issues.  Then
-Please assume you are working with production code, so please treat this exercise as if you're an employee. 
-
+Prompt: You have joined a new team and are working on migrating a legacy codebase to a new platform.
+You found the following function. Take a few minutes to read the code.
 """
 
 
@@ -33,9 +27,35 @@ def to_decimal(in_dollars):
 
 
 """
-You are then told to add a functionality to return cents. Is this a good idea?  How would you incorporate this proposal?
-(Candidate only need to discuss whether this is a good solution and how to implement)
+Q1: What does this function do? Describe in 1-2 sentences.
 """
+
+"""
+Q2: What will be the outputs of the following?
+
+to_decimal("100")
+to_decimal("")
+to_decimal("one")
+to_decimal(None)
+to_decimal(0.0)
+"""
+
+"""
+Q3: Given that this is a production code, what are the potential issues with the code? 
+Consider type safety, error handling, and maintainability.
+"""
+
+"""
+Q4: Rewrite the function to be more robust given the issues that you've identified & explain your changes.
+Let's run the script to see if the function is robust.
+"""
+
+"""
+Q5: You are then told to add a functionality to convert dollars to cents in the same function. 
+Discuss both pros and cons of this proposal and outline a possible implementation.
+(Candidate only need to discuss whether this is a good solution and how to implement it)
+"""
+
 
 
 if __name__ == "__main__":
@@ -45,4 +65,4 @@ if __name__ == "__main__":
         assert isinstance(answer, Decimal)
 
     # extra credit: handling string floats "41.96"
-        # assert to_decimal("0.0") == Decimal(0)
+        assert to_decimal("0.0") == Decimal(0)
