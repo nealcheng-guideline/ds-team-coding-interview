@@ -32,7 +32,7 @@ def construct_prompt(participants: list[Participant]) -> str:
         participant.remove_full_name()
 
     # TODO: fix this!
-    template = """You are a financial accountant with 20 years of experience working within large firms
+    prompt = """You are a financial accountant with 20 years of experience working within large firms
     such as Deloitte and PwC.  Can you please construct a recommendation for suitable 401k options for the participants within
     this legal entity?
     (Please note that participants will be denoted by user_id, which is their unique identifier):
@@ -40,10 +40,10 @@ def construct_prompt(participants: list[Participant]) -> str:
      {{Enter participant information here!}} """
     
     print("Prompt:\n")
-    print(template)
+    print(prompt)
     print("\n")
 
-    return template
+    return prompt
 
 
 def execute_llm_pipeline() -> str:    

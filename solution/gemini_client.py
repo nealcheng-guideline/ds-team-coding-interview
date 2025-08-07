@@ -6,10 +6,11 @@ from errors import ValidationError
 
 class GeminiClient():
     def __init__(self, api_key: str, model: str, temperature: float):
-        try:
-            validate_model_input(api_key, model, temperature)
-        except ValueError as e:
-            raise ValidationError("Model input validation had failed") from e
+        validate_model_input(api_key, model, temperature)
+        
+        self.api_key = api_key
+        self.model = model
+        self.temperature = temperature
 
     def make_query(self, prompt: str):
         if not prompt:

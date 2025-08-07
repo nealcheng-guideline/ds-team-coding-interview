@@ -1,6 +1,12 @@
 """
 Prompt: You have joined a new team and are working on migrating a legacy codebase to a new platform.
 You found the following function. Take a few minutes to read the code.
+
+
+The Decimal class in Python's standard library offers exact decimal arithmetic, which makes it a perfect fit 
+for domains like finance, accounting or anywhere you can't afford those pesky binary'floating rounding errors.
+It can be used like a number Decimal(1.22) + Decimal(0.79)
+
 """
 
 
