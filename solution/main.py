@@ -12,7 +12,7 @@ for _input in (None, "0", 0, 0.0):
     # assert to_decimal("0.0") == Decimal(0)
 
 # part 2
-llm_answer = execute_llm_pipeline()
-assert isinstance(llm_answer, str)
-print("Gemini Response:\n")
-print(llm_answer)
+# llm_answer = execute_llm_pipeline()
+# assert isinstance(llm_answer, str)
+# print("Gemini Response:\n")
+# print(llm_answer)
