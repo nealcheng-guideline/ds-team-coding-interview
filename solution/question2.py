@@ -64,9 +64,8 @@ def execute_llm_pipeline() -> str:
     temperature = float(os.getenv("MODEL_TEMPERATURE")) # adding float here is very important, as env variables are strings when loaded!
     llm_model = os.getenv("MODEL_NAME")
     client = GeminiClient(api_key=api_key, model=llm_model, temperature=temperature)
-    response = client.make_query(prompt)  
-    print("Gemini Response:\n")
-    print(response)
+    response = client.make_query(prompt)
+    return response  
     
 """
 Extra credit:
