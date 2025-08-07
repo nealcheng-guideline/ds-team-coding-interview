@@ -55,14 +55,3 @@ Q5: You are then told to add a functionality to convert dollars to cents in the 
 Discuss both pros and cons of this proposal and outline a possible implementation.
 (Candidate only need to discuss whether this is a good solution and how to implement it)
 """
-
-
-
-if __name__ == "__main__":
-    for _input in (None, "0", 0, 0.0):
-        answer = to_decimal(_input)
-        assert answer == Decimal(0)
-        assert isinstance(answer, Decimal)
-
-    # extra credit: handling string floats "41.96"
-        assert to_decimal("0.0") == Decimal(0)

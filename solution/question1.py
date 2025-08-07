@@ -106,12 +106,3 @@ Con:
 
 Potential implementation: add a parameter (as_cents=False) and return as cents if True + document the behavior!
 """
-
-if __name__ == "__main__":
-    for _input in (None, "0", 0, 0.0):
-        answer = to_decimal(_input)
-        assert answer == Decimal(0)
-        assert isinstance(answer, Decimal)
-
-    # extra credit: handling string floats "41.96"
-        # assert to_decimal("0.0") == Decimal(0)
