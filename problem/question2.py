@@ -46,7 +46,7 @@ def construct_prompt(participants: list[Participant]) -> str:
     return template
 
 
-def main():    
+def main() -> str:    
     pass
     # 1. Load Data from "participant_data.json"
 
