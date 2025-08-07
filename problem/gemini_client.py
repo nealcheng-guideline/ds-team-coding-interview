@@ -2,7 +2,6 @@
 Location for GeminiClient
 """
 from validation import validate_model_input
-from errors import ValidationError
 
 class GeminiClient():
     def __init__(self, api_key: str, model: str, temperature: float):

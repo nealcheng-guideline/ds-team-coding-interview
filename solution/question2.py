@@ -16,16 +16,12 @@ from question1 import to_decimal
 from models import Participant
 from gemini_client import GeminiClient
 from validation import validate_prompt_input
-from errors import PromptError
 
 load_dotenv()
 
 
 def construct_prompt(participants: list[Participant]) -> str:
-    try:
-        validate_prompt_input(participants)
-    except TypeError as e:
-        raise PromptError("Prompt contruction had failed") from e
+    validate_prompt_input(participants)
     
     # Remove full_name to ensure we do not provide PII to the LLM
     for participant in participants:
@@ -78,6 +74,7 @@ def filter_participants(participants: list[Participant], desired_user_ids: list[
 
 
 if __name__ == "__main__":
-    main()
-
-
+    llm_answer = execute_llm_pipeline()
+    assert isinstance(llm_answer, str)
+    print("Gemini Response:\n")
+    print(llm_answer)
