@@ -63,7 +63,11 @@ def execute_llm_pipeline() -> str:
     # print(response)
 
 if __name__ == "__main__":
-    main()
+    llm_answer = execute_llm_pipeline()
+    assert isinstance(llm_answer, str)
+    print("Gemini Response:\n")
+    print(llm_answer)
+
 
 
 """
