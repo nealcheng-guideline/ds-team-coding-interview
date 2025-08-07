@@ -44,7 +44,7 @@ def construct_prompt(participants: list[Participant]) -> str:
     return template
 
 
-def main() -> str:
+def execute_llm_pipeline() -> str:
     import json
     # 1. Load Data from "data.json"
     with open('participant_data.json') as f:
