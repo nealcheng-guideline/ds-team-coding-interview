@@ -4,7 +4,7 @@ Location for pydantic base models
 from pydantic import BaseModel, field_validator
 from decimal import Decimal
 from typing import Optional
-from question1 import to_decimal
+from utils import to_decimal
 
 class Participant(BaseModel):
     user_id: int
