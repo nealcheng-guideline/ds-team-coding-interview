@@ -20,11 +20,9 @@ def to_decimal(dollars: Optional[int | float | str]) -> Decimal:
                     return Decimal(dollars)
                 except:
                     pass
-            ###########################
             raise ValueError(f"dollars is of type string and not numeric")
         
         else:
             dollars = float(dollars)
-    #################################################################################################
 
     return Decimal(dollars)

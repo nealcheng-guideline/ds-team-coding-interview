@@ -51,7 +51,7 @@ def execute_llm_pipeline() -> str:
     # 2. Initialize the Participant objects ensuring that the correct type of "salary_dollars" is used 
     # participants = [Participant(**participant) for participant in data["participants"]] 
 
-    # 3. Construct the prompt (complete construct_prompt)
+    # 3. Construct the prompt
     # prompt = construct_prompt(participants)
 
     # 4. Initialize the GeminiClient and uncomment to call the client
