@@ -1,0 +1,14 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Virtual environment
+venv/
+
+# OS files
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+.python-version
