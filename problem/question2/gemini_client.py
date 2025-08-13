@@ -2,7 +2,6 @@
 Location for GeminiClient
 """
 from validation import validate_model_input
-from validation import validate_model_input, validate_query
 
 class GeminiClient():
     def __init__(self, api_key: str, model_name: str, model_temperature: float):
@@ -13,7 +12,8 @@ class GeminiClient():
         self.model_temperature = model_temperature
 
     def make_query(self, prompt: str):
-        validate_query(prompt)
+        if not prompt:
+            raise Exception("Error: Prompt is not given")
 
         return """
         Sure I can definitely give it a shot!  Please provide me with additional information about
