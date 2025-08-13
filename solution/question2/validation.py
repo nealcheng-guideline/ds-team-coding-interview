@@ -18,3 +18,25 @@ def validate_model_input(api_key: str, model:str, temperature: float):
 def validate_prompt_input(participants: list[Participant]):
     if not all(isinstance(participant, Participant) for participant in participants):
         raise TypeError("The argument for construct_prompt has to be a list of instance <Participants>")
+    
+
+def validate_query(prompt: str):
+    if not prompt:
+         raise Exception("Error: Prompt is not given")
+    
+    condition1 = "202" not in prompt
+    condition2 = "205" not in prompt
+    if condition1 or condition2:
+        raise Exception("One or more user_id not present")
+
+    condition3 = "4000" not in prompt
+    condition4 = "'0'" not in prompt
+
+    if condition3 or condition4:
+         raise Exception("One or more salary information not in prompt")
+    
+    condition4 = "John Smith" in prompt
+    condition5 = "Jane Schoo" in prompt
+
+    if condition4 or condition5:
+         raise Exception("PII in prompt")
