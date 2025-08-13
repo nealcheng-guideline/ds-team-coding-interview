@@ -27,11 +27,15 @@ def construct_prompt(participants: list[Participant]) -> str:
     for participant in participants:
         participant.remove_full_name()
 
+    # TODO: Serialize the Participant objects to JSON
+    participant_info = [participant.model_dump() for participant in participants]
+    
+    # TODO: Add this information to the prompt
     prompt = f"""You are a financial accountant with 20 years of experience working within large firms
     such as Deloitte and PwC.  Can you please construct a recommendation for suitable 401k options for the employees within
     this legal entity?
     (Please note that participants will be denoted by user_id, which is their unique identifier):
-     {[participant.model_dump() for participant in participants]} """
+     {participant_info} """
     
     print("Prompt:\n")
     print(prompt)
