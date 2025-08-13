@@ -12,7 +12,7 @@ import os
 
 from dotenv import load_dotenv
 
-from question1 import to_decimal
+from utils import to_decimal
 from models import Participant
 from gemini_client import GeminiClient
 from validation import validate_prompt_input
