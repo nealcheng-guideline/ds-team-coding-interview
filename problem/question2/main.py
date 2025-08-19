@@ -33,12 +33,10 @@ def construct_prompt(participants: list[Participant]) -> str:
  
     
     # TODO: Add this information to the prompt
+    # Please note that participants will be denoted by user_id, which is their unique identifier
     prompt = """You are a financial accountant with 20 years of experience working within large firms
     such as Deloitte and PwC.  Can you please construct a recommendation for suitable 401k options for the participants within
     this legal entity? 
-    (Please note that participants will be denoted by user_id, which is their unique identifier): 
-
-    {{Enter participant information here!}}
     """
     
     print("Prompt:\n")
